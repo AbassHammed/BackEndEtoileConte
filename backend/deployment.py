@@ -26,7 +26,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-CONNECTION_STRING = os.environ['AZURE_POSTGRESQL_CONNECTIONSTRING']
+CONNECTION_STRING = 'dbname=etoileconte-database host=etoileconte-server.postgres.database.azure.com port=5432 sslmode=require user=ztithtfxyn password=I4KSKEY4W8JMJ18U$'
 
 PARAM = {
     pair.split('=')[0]: pair.split('=')[1] for pair in CONNECTION_STRING.split(' ')
