@@ -144,13 +144,13 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'log/debug.log',
+            'filename': 'debug.log',
             'formatter': 'verbose',
         },
         'file2': {
             'level':'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'log/django/djangodebug.log',
+            'filename': 'djangodebug.log',
             'formatter': 'verbose',
         },
     },
