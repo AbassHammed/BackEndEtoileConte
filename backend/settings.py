@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Then you can specify MEDIA_ROOT and MEDIA_URL like this
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Quick-start development settings - unsuitable for production
@@ -144,13 +144,13 @@ LOGGING = {
         'file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'debug.log',
+            'filename': 'log/debug.log',
             'formatter': 'verbose',
         },
         'file2': {
             'level':'INFO',
             'class': 'logging.FileHandler',
-            'filename': 'djangodebug.log',
+            'filename': 'log/django/djangodebug.log',
             'formatter': 'verbose',
         },
     },
