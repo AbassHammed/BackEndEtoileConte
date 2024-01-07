@@ -10,7 +10,7 @@ class StorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
         fields = ['id', 'title', 'text', 'audio_file', 'audio_file_url', 'created_at', 'updated_at']
-        read_only_fields = ['created_at', 'updated_at']  # These fields should not be modified directly by the API
+        read_only_fields = ['created_at', 'updated_at']  # can't be modified by the API
 
     def get_audio_file_url(self, obj):
         request = self.context.get('request')
