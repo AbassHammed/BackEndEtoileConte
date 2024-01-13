@@ -1,5 +1,6 @@
-import environ
+from dotenv import load_dotenv
 from openai import OpenAI
+import os
 import uuid
 import logging
 from django.core.files.base import ContentFile
@@ -14,14 +15,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserSerializer, LoginSerializer
 
-env = environ.Env()
-environ.Env.read_env()
+# Load the .env file
+load_dotenv()
 
 #get an instance of a logger
 logger = logging.getLogger(__name__)
 
 # Initialize the OpenAI client once
-openai_client = OpenAI(api_key=env('OPENAI_API_KEY'))
+openai_client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 def get_story_from_api():
     try:
@@ -101,12 +102,10 @@ class UserViewSet(viewsets.ModelViewSet):
     
 
 class LoginViewSet(viewsets.ViewSet):
-
     @action(methods=['post'], detail=False)
     def login(self, request):
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.validated_data
             return Response({'message': 'OK'}, status=status.HTTP_200_OK)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -1,12 +1,11 @@
 from pathlib import Path
-import environ
+from dotenv import load_dotenv
 import os
 
 
 
-env = environ.Env()
-# Reading the .env file
-environ.Env.read_env()
+# Load the .env file
+load_dotenv()
 
 
 
@@ -119,6 +118,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'etoileconte.CustomUser'
 
 
 # Static files (CSS, JavaScript, Images)

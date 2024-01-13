@@ -56,16 +56,13 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField()
 
     def validate(self, data):
-        email = data.get("email")
-        password = data.get("password")
+        print("Email:", data.get('email'))  # Printing the email
+        print("Password:", data.get('password'))
+        user = authenticate(email=data['email'], password=data['password'])
+        if not user:
+            raise serializers.ValidationError("Unable to log in with provided credential.")
 
-        if email and password:
-            user = authenticate(username=email, password=password)
-            if user:
-                if not user.is_active:
-                    raise serializers.ValidationError("User is deactivated.")
-                return user
-            else:
-                raise serializers.ValidationError("Unable to log in with provided credentials.")
-        else:
-            raise serializers.ValidationError("Must include 'email' and 'password'.")
+        if not user.is_active:
+            raise serializers.ValidationError("User is deactivated.")
+
+        return user
