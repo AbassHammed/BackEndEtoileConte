@@ -22,23 +22,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
-CONNECTION_STRING = 'dbname=etoileconte-database host=etoileconte-server.postgres.database.azure.com port=5432 sslmode=require user=ztithtfxyn password=I4KSKEY4W8JMJ18U$'
-
-PARAM = {
-    pair.split('=')[0]: pair.split('=')[1] for pair in CONNECTION_STRING.split(' ')
-}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': PARAM['dbname'],
-        'USER': PARAM['user'],
-        'PASSWORD': PARAM['password'],
-        'HOST': PARAM['host'],
-        'PORT': PARAM['port'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
